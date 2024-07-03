@@ -25,6 +25,9 @@ Bem-vindo ao projeto de API REST de Lista de Tarefas! Este projeto foi desenvolv
 - **Maven**
 - **MySQL**
 
+## Link da API
+    https://deplou-crud-springboot.onrender.com/lista
+
 ## Configuração do Projeto
 
 1. **Clone o repositório:**
