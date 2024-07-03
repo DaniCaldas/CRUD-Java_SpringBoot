@@ -41,27 +41,10 @@ Bem-vindo ao projeto de API REST de Lista de Tarefas! Este projeto foi desenvolv
     ```sh
     cd CRUD-Java_SpringBoot
     ```
-
-3. **Configure o banco de dados MySQL:**
-
-    Crie um banco de dados no MySQL e atualize as informações de conexão no arquivo `application.properties`:
-
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/list
-    spring.datasource.username=root
-    spring.datasource.password=
-    ```
-
+    
 4. **Execute as migrações do Flyway:**
 
     O Flyway será executado automaticamente ao iniciar a aplicação, aplicando as migrações de banco de dados necessárias.
-
-5. **Compile e execute a aplicação:**
-
-    ```sh
-    mvn clean install
-    mvn spring-boot:run
-    ```
 
 ## Endpoints da API
 
