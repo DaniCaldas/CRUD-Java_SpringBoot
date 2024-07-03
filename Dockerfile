@@ -14,6 +14,6 @@ FROM openjdk:17-jdk-slim
 
 EXPOSE 8090
 
-COPY --from=build /target/do-1.0.0.jar app.jar
+COPY --from=build /target/do-0.0.1-SNAPSHOT.jar app.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
