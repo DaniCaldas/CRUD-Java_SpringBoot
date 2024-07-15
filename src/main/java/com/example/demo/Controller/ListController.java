@@ -17,7 +17,7 @@ public class ListController {
     @Autowired
     private ListaRepository repository;
 
-    @GetMapping("tarefas")
+    @GetMapping("/tarefas")
     public List<DadosListagemTarefas> list(Pageable pageable) {
         Page<DadosListagemTarefas> page = repository.findAll(pageable).map(DadosListagemTarefas::new);
         return page.getContent();
