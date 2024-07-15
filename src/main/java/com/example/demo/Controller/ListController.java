@@ -17,9 +17,10 @@ public class ListController {
     @Autowired
     private ListaRepository repository;
 
-    @GetMapping
-    public Page<DadosListagemTarefas> list(@PageableDefault Pageable pageable) {
-        return repository.findAll(pageable).map(DadosListagemTarefas::new);
+    @GetMapping("tarefas")
+    public List<DadosListagemTarefas> list(Pageable pageable) {
+        Page<DadosListagemTarefas> page = repository.findAll(pageable).map(DadosListagemTarefas::new);
+        return page.getContent();
     }
 
     @PostMapping
