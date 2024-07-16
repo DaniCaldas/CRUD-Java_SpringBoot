@@ -29,7 +29,7 @@ public class ListController {
         repository.save(new ListaJPA(dados));
     }
 
-    @DeleteMapping("deletar/{id}")
+    @DeleteMapping("/deletar/{id}")
     @Transactional
     public void remover(@PathVariable Long id) {
         repository.deleteById(id);
