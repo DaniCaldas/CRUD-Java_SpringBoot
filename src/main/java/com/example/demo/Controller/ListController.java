@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,9 +30,14 @@ public class ListController {
         repository.save(new ListaJPA(dados));
     }
 
-    @DeleteMapping("/{id}")
-    public void remover(@PathVariable Long id) {
+    @DeleteMapping("/deletar/{id}")
+    @Transactional
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        if(!repository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
