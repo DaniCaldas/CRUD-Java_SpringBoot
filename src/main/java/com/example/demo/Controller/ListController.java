@@ -41,7 +41,6 @@ public class ListController {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
         } catch (Exception e) {
-        
             System.err.println("Error deleting entity with id " + id + ": " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
