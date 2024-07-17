@@ -5,11 +5,15 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("lista")
@@ -17,6 +21,13 @@ public class ListController {
 
     @Autowired
     private ListaRepository repository;
+
+    private final ListaRepository logrepository;
+    private static final Logger logger = LoggerFactory.getLogger(ListController.class);
+
+    public ListController(ListaRepository logrepository) {
+        this.logrepository = logrepository;
+    }
 
     @GetMapping("/tarefas")
     public List<DadosListagemTarefas> list(Pageable pageable) {
@@ -36,8 +47,19 @@ public class ListController {
         if(!repository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
+         try {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
+        }catch (EmptyResultDataAccessException e) {
+            logger.error("Item com id {} não encontrado para deletar", id, e);
+            return ResponseEntity.notFound().build();
+        } catch (DataAccessException e) {
+            logger.error("Erro no banco de dados ao deletar item com id {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (Exception e) {
+            logger.error("Erro inesperado ao deletar item com id {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping
