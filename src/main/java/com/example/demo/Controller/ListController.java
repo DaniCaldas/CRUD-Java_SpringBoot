@@ -35,29 +35,29 @@ public class ListController {
         return page.getContent();
     }
 
-    @PostMapping
+    @PostMapping("/tarefas")
     @Transactional
     public void adicionar(@RequestBody @Valid DadosCadastroTarefa dados) {
         repository.save(new ListaJPA(dados));
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/deletar")
     @Transactional
-    public ResponseEntity<Void> remover(@PathVariable Long id) {
-        if(!repository.existsById(id)){
+    public ResponseEntity<Void> remover(@RequestBody @Valid DadosDeletarTarefa dados) {
+        if(!repository.existsById(dados.id())){
             return ResponseEntity.notFound().build();
         }
-         try {
-        repository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        try {
+            repository.deleteById(dados.id());
+            return ResponseEntity.noContent().build();
         }catch (EmptyResultDataAccessException e) {
-            logger.error("Item com id {} não encontrado para deletar", id, e);
+            logger.error("Item com id {} não encontrado para deletar", dados.id(), e);
             return ResponseEntity.notFound().build();
         } catch (DataAccessException e) {
-            logger.error("Erro no banco de dados ao deletar item com id {}", id, e);
+            logger.error("Erro no banco de dados ao deletar item com id {}", dados.id(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (Exception e) {
-            logger.error("Erro inesperado ao deletar item com id {}", id, e);
+            logger.error("Erro inesperado ao deletar item com id {}", dados.id(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
