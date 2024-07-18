@@ -62,6 +62,21 @@ public class ListController {
         }
     }
 
+    @DeleteMapping("/DeletarTudo")
+    @Transactional
+    public  ResponseEntity<Void> removerTudo(){
+        try {
+            repository.deleteAll();
+            return ResponseEntity.noContent().build();
+        } catch (DataAccessException e) {
+            logger.error("Erro no banco de dados ao deletar", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (Exception e) {
+            logger.error("Erro inesperado ao deletar", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @PutMapping
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizarTarefa dados) {
