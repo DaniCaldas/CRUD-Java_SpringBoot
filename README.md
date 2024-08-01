@@ -1,6 +1,6 @@
 # Projeto de API REST de Lista de Tarefas
 
-Bem-vindo ao projeto de API REST de Lista de Tarefas! Este projeto foi desenvolvido com o objetivo de gerenciar uma lista de tarefas utilizando tecnologias modernas como Java, Spring Boot, Lombok, Flyway, MySQL, Validation e Maven.
+Bem-vindo ao projeto de API REST de Lista de Tarefas! Este projeto foi desenvolvido com o objetivo de gerenciar uma lista de tarefas utilizando tecnologias modernas como Java, Spring Boot, Lombok, Flyway, MySQL, Validation, Maven e foi realizado testes unitários com Mockito e JUnit.
 
 ## Funcionalidades
 
@@ -18,6 +18,8 @@ Bem-vindo ao projeto de API REST de Lista de Tarefas! Este projeto foi desenvolv
 - **MySQL:** Sistema de gerenciamento de banco de dados relacional utilizado para armazenar as tarefas.
 - **Validation:** Biblioteca de validação de dados utilizada para garantir a integridade dos dados de entrada.
 - **Maven:** Ferramenta de gerenciamento de dependências e construção de projetos Java.
+- **Mockito:** Ferramenta para simular eventos de testes
+- **JUnit:** Framework para utilizar testes
 
 ## Requisitos
 
