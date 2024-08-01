@@ -28,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("https://to-do-list-rouge-one-38.vercel.app/");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
